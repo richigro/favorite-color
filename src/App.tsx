@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import "./App.css";
+
 const SELECTABLE_COLORS: { label: string; value: string }[] = [
   { label: "Red", value: "#F55353" },
   { label: "Blue", value: "#035397" },
@@ -21,6 +22,7 @@ const ColorContainer = styled.div`
   width: 50%;
   padding: 2rem;
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const ColorButton = styled.button<{ color?: string }>`
@@ -28,15 +30,20 @@ const ColorButton = styled.button<{ color?: string }>`
   width: 6rem;
   height: 6rem;
   border-radius: 4px;
-  margin-right: 2rem;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
   border: none;
   color: white;
+  :hover {
+    opacity: 0.8;
+  }
 `;
 
 const StyledSpan = styled.span`
   background: black;
   padding: 0.5rem;
   opacity: 0.9rem;
+  border-radius: 4px;
 `;
 
 const App = () => {
