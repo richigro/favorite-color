@@ -14,6 +14,9 @@ const MainLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  margin: 0 10rem 0 10rem;
+  border: 4px solid red;
 `;
 const ColorContainer = styled.div`
   margin-top: 1rem;
@@ -42,7 +45,7 @@ const ColorButton = styled.button<{ color?: string }>`
 const StyledSpan = styled.span`
   background: black;
   padding: 0.5rem;
-  opacity: 0.9rem;
+  opacity: 0.9;
   border-radius: 4px;
 `;
 
