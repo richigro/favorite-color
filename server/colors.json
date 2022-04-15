@@ -1,0 +1,9 @@
+{
+  "data": [
+    { "label": "Red", "value": "#F55353" },
+    { "label": "Blue", "value": "#035397" },
+    { "label": "Green", "value": "#6BCB77" },
+    { "label": "Orange", "value": "#FF8C32" },
+    { "label": "Pink", "value": "#F900BF" }
+  ]
+}
