@@ -1,15 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useQuery } from "react-query";
 
 import { getColors } from "services/colorsApi";
-
-const SELECTABLE_COLORS: { label: string; value: string }[] = [
-  { label: "Red", value: "#F55353" },
-  { label: "Blue", value: "#035397" },
-  { label: "Green", value: "#6BCB77" },
-  { label: "Orange", value: "#FF8C32" },
-  { label: "Pink", value: "#F900BF" },
-];
 
 const MainLayout = styled.div`
   display: flex;
@@ -52,27 +45,38 @@ const StyledSpan = styled.span`
 
 const App = () => {
   const [favoriteColor, setFavoriteColor] = React.useState("red");
-  React.useEffect(() => {
-    getColors();
-  }, []);
+  const {
+    data: colors,
+    isLoading,
+    isError,
+  } = useQuery(["colors"], () => getColors().then((res) => res.data));
+  if (!isLoading) {
+    console.log("the colors: ", colors);
+  }
+  // React.useEffect(() => {
+  //   getColors();
+  // }, []);
+
   return (
     <MainLayout>
       <h1>My favorite color is {favoriteColor}</h1>
       <div>Click one of the buttons below to select your favorite color: </div>
       <ColorContainer>
-        {SELECTABLE_COLORS.map((color) => {
-          return (
-            <ColorButton
-              key={color.label}
-              color={color.value}
-              onClick={() => {
-                console.log("your favorite color is now: ", color.label);
-              }}
-            >
-              <StyledSpan>{color.label}</StyledSpan>
-            </ColorButton>
-          );
-        })}
+        {!isLoading &&
+          !isError &&
+          colors.map((color: { label: string; value: string }) => {
+            return (
+              <ColorButton
+                key={color.label}
+                color={color.value}
+                onClick={() => {
+                  console.log("your favorite color is now: ", color.label);
+                }}
+              >
+                <StyledSpan>{color.label}</StyledSpan>
+              </ColorButton>
+            );
+          })}
       </ColorContainer>
     </MainLayout>
   );
