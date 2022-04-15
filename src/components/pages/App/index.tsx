@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useQuery } from "react-query";
 
 import { getColors } from "services/colorsApi";
+import { useColors } from "context/colorsContext";
 
 const MainLayout = styled.div`
   display: flex;
@@ -22,15 +23,23 @@ const ColorContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const ColorButton = styled.button<{ color?: string }>`
+// const SelecectedButtonWrapper = styled.div`
+//   outline: 3px solid blue;
+//   position: absolute;
+// `;
+
+const ColorButton = styled.button<{ color?: string; isSelected: boolean }>`
   background: ${({ color }) => (color ? color : "white")};
   width: 6rem;
   height: 6rem;
   border-radius: 4px;
   margin-right: 1.5rem;
   margin-bottom: 1rem;
+  display: relative;
   border: none;
   color: white;
+  /* outline: ${({ isSelected }) =>
+    isSelected ? "3px solid blue" : "none"}; */
   :hover {
     opacity: 0.8;
   }
@@ -44,22 +53,23 @@ const StyledSpan = styled.span`
 `;
 
 const App = () => {
-  const [favoriteColor, setFavoriteColor] = React.useState("red");
+  const [favoriteColor, setFavoriteColor] = useColors();
   const {
     data: colors,
     isLoading,
     isError,
   } = useQuery(["colors"], () => getColors().then((res) => res.data));
-  if (!isLoading) {
-    console.log("the colors: ", colors);
-  }
-  // React.useEffect(() => {
-  //   getColors();
-  // }, []);
+
+  // console.log("the colors: ", colors);
+  console.log("current favorite color: ", favoriteColor);
 
   return (
     <MainLayout>
-      <h1>My favorite color is {favoriteColor}</h1>
+      <h1>
+        {favoriteColor
+          ? `My favorite color is ${favoriteColor}`
+          : "Pick your favorite color to get started."}
+      </h1>
       <div>Click one of the buttons below to select your favorite color: </div>
       <ColorContainer>
         {!isLoading &&
@@ -69,8 +79,10 @@ const App = () => {
               <ColorButton
                 key={color.label}
                 color={color.value}
+                isSelected={favoriteColor === color.label}
                 onClick={() => {
-                  console.log("your favorite color is now: ", color.label);
+                  // console.log("your favorite color is now: ", color.label);
+                  setFavoriteColor(color.label);
                 }}
               >
                 <StyledSpan>{color.label}</StyledSpan>
