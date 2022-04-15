@@ -1,3 +1,7 @@
+const domain = "http://localhost:5000";
+
 export const getColors = async () => {
-  return;
+  const response = await fetch(`${domain}/colors`);
+
+  console.log("the response: ", response);
 };

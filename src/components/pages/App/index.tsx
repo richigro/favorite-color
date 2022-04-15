@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import "./App.css";
+
+import { getColors } from "services/colorsApi";
 
 const SELECTABLE_COLORS: { label: string; value: string }[] = [
   { label: "Red", value: "#F55353" },
@@ -51,6 +52,9 @@ const StyledSpan = styled.span`
 
 const App = () => {
   const [favoriteColor, setFavoriteColor] = React.useState("red");
+  React.useEffect(() => {
+    getColors();
+  }, []);
   return (
     <MainLayout>
       <h1>My favorite color is {favoriteColor}</h1>
