@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import ColorButton from "components/atoms/ColorButton";
+
 import { useFavoriteColor } from "context/colorsContext";
 import { useColors } from "hooks/useColors";
 
@@ -7,34 +9,20 @@ const MainLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 3px solid red;
+  padding: 1rem;
   height: 100vh;
+  min-width: 10rem;
   margin: 0 10rem 0 10rem;
   background: white;
 `;
 const ColorContainer = styled.div`
   margin-top: 1rem;
   border-radius: 4px;
-  width: 70%;
-  padding: 2rem;
   display: flex;
   flex-wrap: wrap;
-`;
-
-const ColorButton = styled.button<{ color?: string; isSelected: boolean }>`
-  background: ${({ color }) => (color ? color : "white")};
-  width: 6rem;
-  height: 6rem;
-  border-radius: 4px;
-  margin-right: 1.5rem;
-  margin-bottom: 1rem;
-  display: relative;
-  border: none;
-  color: white;
-  outline: ${({ isSelected }) => (isSelected ? "3px solid blue" : "none")};
-  :hover,
-  :focus {
-    opacity: 0.8;
-  }
+  width: 100%;
+  padding: 2rem;
 `;
 
 const StyledSpan = styled.span`
@@ -57,6 +45,8 @@ const Dashboard = () => {
       </h1>
       <div>Click one of the buttons below to select your favorite color: </div>
       <ColorContainer>
+        {isLoading && !isError && <div>Loading colors...</div>}
+        {isError && <div>Error Please make sure the server is running.</div>}
         {!isLoading &&
           !isError &&
           colors.map((color: { label: string; value: string }) => {

@@ -8,6 +8,8 @@ import { useColors } from "hooks/useColors";
 
 const MainLayout = styled.div<{ color: string }>`
   background: ${({ color }) => (color ? color : "white")};
+  width: 100%;
+  height: 100%;
 `;
 
 const App = () => {
