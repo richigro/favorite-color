@@ -15,14 +15,14 @@ const ColorsContextProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const useColors = () => {
+const useFavoriteColor = () => {
   const context = React.useContext(ColorsContext);
   if (!context) {
     throw new Error(
-      "the useColors hook must be used within an ColorsContextProvider."
+      "the useFavoriteColor hook must be used within an ColorsContextProvider."
     );
   }
   return context;
 };
 
-export { useColors, ColorsContextProvider };
+export { useFavoriteColor, ColorsContextProvider };

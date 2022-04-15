@@ -1,16 +1,26 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import Dashboard from "components/pages/Dashboard";
 
-const MainLayout = styled.div`
-  border: 10px solid green;
+import { useFavoriteColor } from "context/colorsContext";
+import { useColors } from "hooks/useColors";
+
+const MainLayout = styled.div<{ color: string }>`
+  background: ${({ color }) => (color ? color : "white")};
 `;
 
 const App = () => {
+  const { data: colors } = useColors();
+  const [favoriteColor] = useFavoriteColor();
+
+  const favoriteColorObject =
+    colors?.find(
+      (color: { value: string; label: string }) => color.label === favoriteColor
+    ) || {};
+
   return (
-    <MainLayout>
+    <MainLayout color={favoriteColorObject.value}>
       <Routes>
         <Route path="/" element={<Dashboard />} />
       </Routes>

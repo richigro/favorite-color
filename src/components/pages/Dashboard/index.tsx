@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { useQuery } from "react-query";
 
-import { getColors } from "services/colorsApi";
-import { useColors } from "context/colorsContext";
+import { useFavoriteColor } from "context/colorsContext";
+import { useColors } from "hooks/useColors";
 
 const MainLayout = styled.div`
   display: flex;
@@ -10,13 +9,12 @@ const MainLayout = styled.div`
   align-items: center;
   height: 100vh;
   margin: 0 10rem 0 10rem;
-  border: 4px solid red;
+  background: white;
 `;
 const ColorContainer = styled.div`
   margin-top: 1rem;
   border-radius: 4px;
-  border: 2px solid black;
-  width: 50%;
+  width: 70%;
   padding: 2rem;
   display: flex;
   flex-wrap: wrap;
@@ -47,15 +45,8 @@ const StyledSpan = styled.span`
 `;
 
 const Dashboard = () => {
-  const [favoriteColor, setFavoriteColor] = useColors();
-  const {
-    data: colors,
-    isLoading,
-    isError,
-  } = useQuery(["colors"], () => getColors().then((res) => res.data));
-
-  // console.log("the colors: ", colors);
-  console.log("current favorite color: ", favoriteColor);
+  const { data: colors, isLoading, isError } = useColors();
+  const [favoriteColor, setFavoriteColor] = useFavoriteColor();
 
   return (
     <MainLayout>
