@@ -7,10 +7,9 @@ const ColorButton = styled.button<{ color?: string; isSelected: boolean }>`
   border-radius: 4px;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  display: relative;
   border: none;
   color: white;
-  outline: ${({ isSelected }) => (isSelected ? "3px solid blue" : "none")};
+  outline: ${({ isSelected }) => (isSelected ? "3px solid #398AB9" : "none")};
   :hover,
   :focus {
     opacity: 0.8;
