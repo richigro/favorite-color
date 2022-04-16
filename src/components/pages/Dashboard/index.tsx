@@ -57,7 +57,7 @@ const Dashboard = () => {
         )}
         {!isLoading &&
           !isError &&
-          colors.map((color: { label: string; value: string }) => {
+          colors?.map((color) => {
             return (
               <ColorButton
                 key={color.label}

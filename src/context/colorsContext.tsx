@@ -1,6 +1,7 @@
 import React from "react";
 
 type ColorsContextType = [string, React.Dispatch<React.SetStateAction<string>>];
+
 const ColorsContext = React.createContext<ColorsContextType | undefined>(
   undefined
 );

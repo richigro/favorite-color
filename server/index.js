@@ -7,7 +7,7 @@ const port = 5000;
 app.use(cors());
 
 app.get("/colors", (req, res) => {
-  res.status(201).json(COLORS);
+  res.status(200).json(COLORS);
 });
 
 app.listen(port, () => {
