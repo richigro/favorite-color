@@ -51,7 +51,7 @@ const Dashboard = () => {
           <div>
             <p>Error: Please make sure the server is running.</p>
             {error && (
-              <pre style={{ color: "red" }}>{(error as any).message}</pre>
+              <pre style={{ color: "red" }}>{(error as Error).message}.</pre>
             )}
           </div>
         )}

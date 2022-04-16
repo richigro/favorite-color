@@ -7,7 +7,7 @@ import { useFavoriteColor } from "context/colorsContext";
 import { useColors } from "hooks/useColors";
 
 const MainLayout = styled.div<{ color: string | undefined }>`
-  background: ${({ color }) => (color ? color : "green")};
+  background: ${({ color }) => (color ? color : "#DFDFDE")};
   width: 100%;
   height: 100%;
 `;
