@@ -16,12 +16,17 @@ const DashboardWrapper = styled.div`
   margin: 0 10rem 0 10rem;
   background: white;
 `;
+const StyledDiv = styled.div`
+  margin-top: 2rem;
+`;
 const ColorContainer = styled.div`
   margin-top: 1rem;
   border-radius: 4px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  height: 100%;
+  align-items: center;
   width: 100%;
   padding: 2rem;
 `;
@@ -44,7 +49,9 @@ const Dashboard = () => {
           ? `My favorite color is ${favoriteColor}`
           : "Pick your favorite color to get started."}
       </h1>
-      <div>Click one of the buttons below to select your favorite color: </div>
+      <StyledDiv>
+        Click one of the buttons below to select your favorite color:{" "}
+      </StyledDiv>
       <ColorContainer>
         {isLoading && !isError && <Spinner aria-label="loading" />}
         {isError && (
