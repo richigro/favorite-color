@@ -6,7 +6,7 @@ import Spinner from "components/atoms/Spinner";
 import { useFavoriteColor } from "context/colorsContext";
 import { useColors } from "hooks/useColors";
 
-const MainLayout = styled.div`
+const DashboardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,7 +38,7 @@ const Dashboard = () => {
   const [favoriteColor, setFavoriteColor] = useFavoriteColor();
 
   return (
-    <MainLayout>
+    <DashboardWrapper>
       <h1>
         {favoriteColor
           ? `My favorite color is ${favoriteColor}`
@@ -72,7 +72,7 @@ const Dashboard = () => {
             );
           })}
       </ColorContainer>
-    </MainLayout>
+    </DashboardWrapper>
   );
 };
 
